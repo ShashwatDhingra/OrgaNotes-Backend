@@ -7,6 +7,8 @@ class Utils {
         const EMAIL = process.env.EMAIL;
         const PASS = process.env.PASS;
 
+        console.log(EMAIL);
+
         // Configure Nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: 'gmail',
