@@ -31,10 +31,9 @@ class Utils {
             // Send email
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
-                    console.log(info);
+                    console.log('error');
                     console.log(err.message);
                 } else {
-                    console.log(info);
                     console.log('mail sent')
                 }
             });
