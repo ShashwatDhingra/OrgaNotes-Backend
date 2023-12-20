@@ -34,7 +34,7 @@ class Utils {
                     console.log('error');
                     console.log(err.message);
                 } else {
-                    console.log('mail sent')
+                    console.log(info.response)
                 }
             });
             console.log('Email sent successfully');
