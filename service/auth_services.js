@@ -169,6 +169,10 @@ class AuthService {
     async resetPassword(email, password) {
         const user = await userModel.findOne({ email });
 
+        if(!user){
+            return {status: false, message: 'User doesn\'t exists'}
+        }
+
         user.password = password;
         user.resetPin = null;
         user.resetPinExpiration = null;
