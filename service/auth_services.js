@@ -120,7 +120,7 @@ class AuthService {
             }
 
             // Generate a JWT Token
-            const token = jwt.sign({ userId: user._id }, "orgaNotes", { expiresIn: '30d' })
+            const token = jwt.sign({ user_email: user.email }, "orgaNotes", { expiresIn: '30d' })
 
             return { status: true, message: "Enjoy! Organized your notes with OrgaNotes", token };
         } catch (e) {
