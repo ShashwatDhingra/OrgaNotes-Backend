@@ -7,8 +7,6 @@ class Utils {
         const EMAIL = process.env.EMAIL;
         const PASS = process.env.PASS;
 
-        console.log(EMAIL);
-
         // Configure Nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -31,10 +29,12 @@ class Utils {
 
         try {
             // Send email
-            await transporter.sendMail(mailOptions, (err, info) => {
+            transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
+                    console.log(info);
                     console.log(err.message);
                 } else {
+                    console.log(info);
                     console.log('mail sent')
                 }
             });
