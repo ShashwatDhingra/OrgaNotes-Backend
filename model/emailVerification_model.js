@@ -7,6 +7,6 @@ const emailVerificationSchema = new mongoose.Schema({
     expiration: {type: Date, default: null}
 })
 
-const emailVerificationModel = db.model('EmailVerification', emailVerificationSchema);
+const emailVerificationModel = db.model('email_verifications', emailVerificationSchema);
 
 module.exports = emailVerificationModel;
