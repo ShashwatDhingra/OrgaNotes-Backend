@@ -22,7 +22,9 @@ class Utils {
             from: 'OrgaNotes',
             to,
             subject,
-            text
+            text,
+            inReplyTo: this.generateUniqueMessageId(),
+            references: this.generateUniqueMessageId(),
         };
 
         try {
