@@ -4,8 +4,6 @@ const nodemailer = require('nodemailer')
 class Utils {
     async sendMail(to, subject, text) {
 
-        console.log('debug');
-
         const EMAIL = process.env.EMAIL;
         const PASS = process.env.PASS;
 
@@ -13,8 +11,8 @@ class Utils {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'devtest773@gmail.com',
-                pass: 'ylsn lwjq vvcf rcya'
+                user: EMAIL,
+                pass: PASS
             }
         });
 
