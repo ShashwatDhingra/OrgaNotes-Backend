@@ -10,9 +10,13 @@ const { isBuffer } = require('util');
 class AuthService {
 
     //* To Confirm the user mail id - This function only sends the code to user mail id and Save the PIN corresponding to their user mailid
-
     async confirmMail(email) {
         try {
+
+            let isUser = await userModel.findOne({email});
+            if(isUser){
+                return {status: false, message: "User already exists with this mail id"}
+            }
 
             let user = await emailVerificationModel.findOne({ email });
 
