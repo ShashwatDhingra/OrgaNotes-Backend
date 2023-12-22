@@ -19,7 +19,7 @@ router.post('/login', authController.login);
 router.post('/forget-password', authController.forgetPassword)
 
 // Verify Reset PIN
-router.post('/verify-pin', authController.verifyResetPin);
+router.post('/verify-reset-pin', authController.verifyResetPin);
 
 // Reset Password
 router.post('/reset-password', authController.resetPassword);
