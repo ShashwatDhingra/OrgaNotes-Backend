@@ -93,8 +93,8 @@ class AuthService {
             // Save the user to the database
             const result = await user.save();
 
-              // Generate a JWT Token
-              const token = jwt.sign({ user_email: user.email }, process.env.JWT_KEY);
+            // Generate a JWT Token
+            const token = jwt.sign({ user_email: user.email }, process.env.JWT_KEY);
 
             if (result) {
                 console.log('--- accounted created ---');

@@ -31,13 +31,13 @@ class AuthController {
 
         // Check if field is null
         if (username == undefined) {
-            res.status(400).json({ status: "failed", message: "please fill username" })
+            res.status(400).json({ status: false, message: "please fill username" })
             return;
         } else if (email == undefined) {
-            res.status(400).json({ status: "failed", message: "please fill email" })
+            res.status(400).json({ status: false, message: "please fill email" })
             return;
         } else if (password == undefined) {
-            res.status(400).json({ status: "failed", message: "please fill password" })
+            res.status(400).json({ status: false, message: "please fill password" })
             return;
         }
 
