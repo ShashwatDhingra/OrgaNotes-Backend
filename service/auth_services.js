@@ -150,7 +150,7 @@ class AuthService {
             user.resetPinExpiration = Date.now() + 60000;  // PIN valid for 1 minutes
             await user.save();
 
-            const result = utils.sendMail(email, 'OrgaNotes - Code for reset password', `PIN for reset password ${generatePin}`)
+            const result = utils.sendMail(email, 'OrgaNotes - Code for reset password', `PIN - ${generatePin}`)
 
             if (result) {
                 return { status: true, message: "Please check you mail-id" };
