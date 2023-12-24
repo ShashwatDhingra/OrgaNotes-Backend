@@ -94,7 +94,7 @@ class AuthService {
             const result = await user.save();
 
             // Generate a JWT Token
-            const token = jwt.sign({ user_email: user.email }, process.env.JWT_KEY);
+            const token = jwt.sign({ email: user.email }, process.env.JWT_KEY);
 
             if (result) {
                 console.log('--- accounted created ---');
@@ -127,7 +127,7 @@ class AuthService {
             }
 
             // Generate a JWT Token
-            const token = jwt.sign({ user_email: user.email }, process.env.JWT_KEY)
+            const token = jwt.sign({ email: user.email }, process.env.JWT_KEY)
 
             return { status: true, message: "Enjoy! Organized your notes with OrgaNotes", token };
         } catch (e) {
