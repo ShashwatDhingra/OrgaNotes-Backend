@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 class Utils {
 
     generateJWT(username, email){
-        return jwt.sign({ email: user.email , username: user.username }, process.env.JWT_KEY);
+        return jwt.sign({ username, email}, process.env.JWT_KEY);
     }
 
     async sendMail(to, subject, text) {
