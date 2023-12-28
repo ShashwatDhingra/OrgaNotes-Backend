@@ -1,7 +1,13 @@
 const nodemailer = require('nodemailer')
+const jwt = require('jsonwebtoken');
 
 
 class Utils {
+
+    generateJWT(username, email){
+        return jwt.sign({ email: user.email , username: user.username }, process.env.JWT_KEY);
+    }
+
     async sendMail(to, subject, text) {
 
         const EMAIL = process.env.EMAIL;
