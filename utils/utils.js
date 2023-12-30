@@ -29,8 +29,8 @@ class Utils {
             to,
             subject,
             text,
-            inReplyTo: this.generateUniqueMessageId(),
-            references: this.generateUniqueMessageId(),
+            inReplyTo: this.generateUniqueMessageId(),  // This'll make a new thread of new mail
+            references: this.generateUniqueMessageId(), // This'll make a new thread of new mail
         };
 
         try {

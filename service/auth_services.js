@@ -9,13 +9,13 @@ const { isBuffer } = require('util');
 
 class AuthService {
 
-    //* To Confirm the user mail id - This function only sends the code to user mail id and Save the PIN corresponding to their user mailid
+    //* To Confirm the user mail id - This function only sends the code to user mail id and Save the PIN corresponding to their user mailid in 'emailVerification' collection.
     async confirmMail(email) {
         try {
 
-            let isUser = await userModel.findOne({email});
-            if(isUser){
-                return {status: false, message: "User already exists with this mail id"}
+            let isUser = await userModel.findOne({ email });
+            if (isUser) {
+                return { status: false, message: "User already exists with this mail id" }
             }
 
             let user = await emailVerificationModel.findOne({ email });
@@ -98,7 +98,7 @@ class AuthService {
 
             if (result) {
                 console.log('--- accounted created ---');
-                return { status: true, message: 'Signup Successful', token};
+                return { status: true, message: 'Signup Successful', token };
             }
             return { status: false, message: 'Something went wrong' };
 
@@ -136,6 +136,7 @@ class AuthService {
         }
     }
 
+    // This function only sends the code to user mail id and Save the PIN corresponding to their user mailid in 'users' collection 
     async forgetPassword(email) {
         try {
             const user = await userModel.findOne({ email });
@@ -164,7 +165,14 @@ class AuthService {
     }
 
     async verifyResetPin(email, pin) {
-        const user = await userModel.findOne({ email, resetPin: pin, resetPinExpiration: { $gt: Date.now() } })
+
+        let user = await userModel.findOne({ email });
+
+        if (!user) {
+            return { status: false, message: "User Not Found" };
+        }
+
+        user = await userModel.findOne({ email, resetPin: pin, resetPinExpiration: { $gt: Date.now() } })  // another way to verify the pin weather it expire, using $gt i.e. query operator
 
         if (!user) {
             return { status: false, message: "Invalid or expired PIN" };
@@ -176,8 +184,8 @@ class AuthService {
     async resetPassword(email, password) {
         const user = await userModel.findOne({ email });
 
-        if(!user){
-            return {status: false, message: 'User doesn\'t exists'}
+        if (!user) {
+            return { status: false, message: 'User not found' }
         }
 
         user.password = password;
