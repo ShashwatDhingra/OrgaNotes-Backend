@@ -4,7 +4,7 @@ class NotesController{
 
     async addNote (req, res){
         const {note, email} = req.body;
-        const result = await noteService(note, email);
+        const result = await noteService.addNote(note, email);
 
         if(result.status){
             res.status(200).json(result);
