@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const noteSchema = new mongoose.Schema(
     {
-        id: { type: Number},
+        id: { type: Number, unique: true},
         deltaTitle: { type: String },
         deltaDesc: { type: String },
         title: { type: String },

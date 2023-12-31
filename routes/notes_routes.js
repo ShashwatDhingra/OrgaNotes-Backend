@@ -13,7 +13,7 @@ router.post('/add-all', noteController.addNotes);
 router.get('/', noteController.getNotes)
 
 // Update Note
-router.post('/update', noteController.updateNote);
+router.put('/update', noteController.updateNote);
 
 // Delet Note
 router.delete('/delete', noteController.deleteNote);

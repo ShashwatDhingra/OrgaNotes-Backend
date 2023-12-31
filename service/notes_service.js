@@ -1,4 +1,5 @@
 const { noteSchema, userModel } = require('../model/user_model')
+const ObjectId = require('mongoose').Types.ObjectId;
 
 class NoteService {
     async addNote(note, email) {
@@ -51,16 +52,22 @@ class NoteService {
         if (!user) {
             return { result: false, message: 'Uesr not found.' }
         }
+        // Find the index of the note with the specified ID
+        const noteIndex = user.notes.findIndex(note => note.id === note_id);
 
-        const result = await user.updateOne(
-            { email },
-            { $pull: { notes: { id: note_id } } }
-        );
-
-        if (result.nModified > 0) {
-            return { result: true, message: 'Note deleted successfully.' };
-        } else {
+        // Check if the note with the specified ID was found
+        if (noteIndex === -1) {
             return { result: false, message: 'Note not found.' };
+        }
+
+        // Remove the note from the user's notes array
+        user.notes.splice(noteIndex, 1);
+
+        try {
+            await user.save();
+            return { result: true, message: 'Note deleted successfully.' };
+        } catch (e) {
+            return { result: false, message: 'Error while saving user.' };
         }
     }
 
@@ -71,13 +78,13 @@ class NoteService {
             return { result: false, message: 'Uesr not found.' }
         }
 
-        const result = await user.updateOne(
+        const result = await userModel.updateOne(
             { email, 'notes.id': note_id },
-            { $set: { 'note.$': note } }
+            { $set: { 'notes.$': note } }
         )
 
-        if (result.nModified > 0) {
-            return { result: true, message: 'Note deleted successfully.' };
+        if (result.modifiedCount > 0) {
+            return { result: true, message: 'Note updated successfully.' };
         } else {
             return { result: false, message: 'Note not found.' };
         }
