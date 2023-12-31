@@ -2,12 +2,25 @@ const db = require('../config/db');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const noteSchema = new mongoose.Schema(
+    {
+        id: { type: Number},
+        deltaTitle: { type: String },
+        deltaDesc: { type: String },
+        title: { type: String },
+        desc: { type: String },
+        created: { type: String },
+        lastModified: { type: String },
+        bool: { type: Boolean }
+    })
+
 const userSchema = new mongoose.Schema({
     username: { type: String, requried: true },
     email: { type: String, requried: true, unique: true },
     password: { type: String, required: true },
     resetPin: { type: String, default: null },
-    resetPinExpiration: { type: Date, default: null }
+    resetPinExpiration: { type: Date, default: null },
+    notes: {type: [noteSchema], default: []}  // Using Embedding way instead of Referencing
 })
 
 // to crypt the password 
