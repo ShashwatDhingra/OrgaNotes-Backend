@@ -10,7 +10,7 @@ router.post('/add', noteController.addNote);
 router.post('/add-all', noteController.addNotes);
 
 // Get all notes
-router.get('/', noteController.getNotes)
+router.post('/', noteController.getNotes)
 
 // Update Note
 router.put('/update', noteController.updateNote);
