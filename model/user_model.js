@@ -11,7 +11,7 @@ const noteSchema = new mongoose.Schema(
         desc: { type: String },
         created: { type: String },
         lastModified: { type: String },
-        bool: { type: Boolean }
+        isBackup: { type: Boolean }
     })
 
 const userSchema = new mongoose.Schema({
