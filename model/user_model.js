@@ -50,4 +50,7 @@ userSchema.pre('save', async function (next) {
 
 const userModel = db.model('users', userSchema)
 
-module.exports = userModel
+module.exports = {
+    userModel,
+    noteSchema
+}

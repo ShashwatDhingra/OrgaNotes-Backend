@@ -1,11 +1,9 @@
-const userModel = require('../model/user_model')
+const { userModel } = require('../model/user_model')
 const emailVerificationModel = require('../model/emailVerification_model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
-const { generate } = require('randomstring');
 const nodemailer = require('nodemailer')
 const utils = require('../utils/utils');
-const { isBuffer } = require('util');
 
 class AuthService {
 
